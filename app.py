@@ -2,12 +2,11 @@ from flask import Flask, render_template, request
 import numpy as np
 import joblib
 import os
+import tensorflow as tf
 os.environ['IF_CPP_MIN_LOG_LEVEL'] = '3'
-from tensorflow
-tf.config.threading.set_inter_op_parallerism_threads(1)
-tf.config.threading.set_intra_op_parallerism_threads(1)
-
-import keras
+from tensorflow import keras
+tf.config.threading.set_inter_op_parallelism_threads(1)
+tf.config.threading.set_intra_op_parallelism_threads(1)
 
 app = Flask(__name__)
 
