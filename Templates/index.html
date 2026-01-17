@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breast Cancer Prediction</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background: #f4f6f9;
             padding: 40px;
+            margin: 0;
         }
         .container {
             background: white;
@@ -19,11 +21,21 @@
         }
         h2 {
             text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
         }
         input {
             width: 100%;
             padding: 8px;
             margin: 6px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
         button {
             width: 100%;
@@ -33,40 +45,66 @@
             border: none;
             margin-top: 10px;
             cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
         }
         .result {
             margin-top: 20px;
-            padding: 10px;
-            background: #eef;
+            padding: 15px;
+            background: #e7f3ff;
             border-radius: 5px;
             text-align: center;
+            border-left: 4px solid #007bff;
+        }
+        .result strong {
+            color: #333;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Breast Cancer Prediction</h2>
+    <h2>🩺 Breast Cancer Prediction</h2>
 
     <form method="POST">
-        <input type="number" step="any" name="clump_thickness" placeholder="Clump Thickness" required>
-        <input type="number" step="any" name="uniform_cell_size" placeholder="Uniform Cell Size" required>
-        <input type="number" step="any" name="uniform_cell_shape" placeholder="Uniform Cell Shape" required>
-        <input type="number" step="any" name="marginal_adhesion" placeholder="Marginal Adhesion" required>
-        <input type="number" step="any" name="single_epithelial_size" placeholder="Single Epithelial Size" required>
-        <input type="number" step="any" name="bare_nuclei" placeholder="Bare Nuclei" required>
-        <input type="number" step="any" name="bland_chromatin" placeholder="Bland Chromatin" required>
-        <input type="number" step="any" name="normal_nucleoli" placeholder="Normal Nucleoli" required>
-        <input type="number" step="any" name="mitoses" placeholder="Mitoses" required>
+        <label for="clump_thickness">Clump Thickness (1-10):</label>
+        <input type="number" step="1" min="1" max="10" name="clump_thickness" id="clump_thickness" placeholder="Enter value 1-10" required>
+        
+        <label for="uniform_cell_size">Uniform Cell Size (1-10):</label>
+        <input type="number" step="1" min="1" max="10" name="uniform_cell_size" id="uniform_cell_size" placeholder="Enter value 1-10" required>
+        
+        <label for="uniform_cell_shape">Uniform Cell Shape (1-10):</label>
+        <input type="number" step="1" min="1" max="10" name="uniform_cell_shape" id="uniform_cell_shape" placeholder="Enter value 1-10" required>
+        
+        <label for="marginal_adhesion">Marginal Adhesion (1-10):</label>
+        <input type="number" step="1" min="1" max="10" name="marginal_adhesion" id="marginal_adhesion" placeholder="Enter value 1-10" required>
+        
+        <label for="single_epithelial_size">Single Epithelial Size (1-10):</label>
+        <input type="number" step="1" min="1" max="10" name="single_epithelial_size" id="single_epithelial_size" placeholder="Enter value 1-10" required>
+        
+        <label for="bare_nuclei">Bare Nuclei (1-10):</label>
+        <input type="number" step="1" min="1" max="10" name="bare_nuclei" id="bare_nuclei" placeholder="Enter value 1-10" required>
+        
+        <label for="bland_chromatin">Bland Chromatin (1-10):</label>
+        <input type="number" step="1" min="1" max="10" name="bland_chromatin" id="bland_chromatin" placeholder="Enter value 1-10" required>
+        
+        <label for="normal_nucleoli">Normal Nucleoli (1-10):</label>
+        <input type="number" step="1" min="1" max="10" name="normal_nucleoli" id="normal_nucleoli" placeholder="Enter value 1-10" required>
+        
+        <label for="mitoses">Mitoses (1-10):</label>
+        <input type="number" step="1" min="1" max="10" name="mitoses" id="mitoses" placeholder="Enter value 1-10" required>
 
-        <button type="submit">Predict</button>
+        <button type="submit">🔍 Predict</button>
     </form>
 
     {% if prediction %}
-        <div class="result">
-            <strong>Prediction:</strong> {{ prediction }} <br>
-            <strong>Probability:</strong> {{ probability }}
-        </div>
+    <div class="result">
+        <strong>Prediction:</strong> {{ prediction }}<br>
+        <strong>Probability:</strong> {{ probability }}
+    </div>
     {% endif %}
 </div>
 
