@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Breast Cancer Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 40px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Breast Cancer Prediction</h2>
+
+    <form method="POST">
+        <input type="number" step="any" name="clump_thickness" placeholder="Clump Thickness" required>
+        <input type="number" step="any" name="uniform_cell_size" placeholder="Uniform Cell Size" required>
+        <input type="number" step="any" name="uniform_cell_shape" placeholder="Uniform Cell Shape" required>
+        <input type="number" step="any" name="marginal_adhesion" placeholder="Marginal Adhesion" required>
+        <input type="number" step="any" name="single_epithelial_size" placeholder="Single Epithelial Size" required>
+        <input type="number" step="any" name="bare_nuclei" placeholder="Bare Nuclei" required>
+        <input type="number" step="any" name="bland_chromatin" placeholder="Bland Chromatin" required>
+        <input type="number" step="any" name="normal_nucleoli" placeholder="Normal Nucleoli" required>
+        <input type="number" step="any" name="mitoses" placeholder="Mitoses" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            <strong>Prediction:</strong> {{ prediction }} <br>
+            <strong>Probability:</strong> {{ probability }}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
