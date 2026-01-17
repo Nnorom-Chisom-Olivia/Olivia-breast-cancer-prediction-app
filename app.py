@@ -12,8 +12,8 @@ scaler = joblib.load("scaler.pkl")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    prediction = None
-    probability = None
+    prediction = ""
+    probability = ""
 
     if request.method == "POST":
         try:
