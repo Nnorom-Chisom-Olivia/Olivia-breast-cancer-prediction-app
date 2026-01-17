@@ -42,15 +42,14 @@ def index():
             # Apply threshold
             if prob >= 0.5:
                 prediction = "Malignant (Cancerous)"
-                label = 4
             else:
                 prediction = "Benign (Non-cancerous)"
-                label = 2
 
-            probability = f"{prob:.2f}"
+            probability = f"{prob:.2%}"
 
         except Exception as e:
             prediction = f"Error: {str(e)}"
+            probability = "N/A"
 
     return render_template(
         "index.html",
