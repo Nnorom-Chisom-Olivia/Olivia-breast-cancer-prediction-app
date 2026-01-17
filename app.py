@@ -2,7 +2,12 @@ from flask import Flask, render_template, request
 import numpy as np
 import joblib
 import os
-from tensorflow import keras
+os.environ['IF_CPP_MIN_LOG_LEVEL'] = '3'
+from tensorflow
+tf.config.threading.set_inter_op_parallerism_threads(1)
+tf.config.threading.set_intra_op_parallerism_threads(1)
+
+import keras
 
 app = Flask(__name__)
 
@@ -37,7 +42,7 @@ def index():
             input_scaled = scaler.transform(input_data)
 
             # Predict
-            prob = model.predict(input_scaled)[0][0]
+            prob = model(input_scaled, training=False).numpy()[0][0]
 
             # Apply threshold
             if prob >= 0.5:
