@@ -6,6 +6,9 @@ import tensorflow as tf
 
 # Disable annoying TensorFlow logs for a cleaner terminal
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import tensorflow as tf
+tf.config.threading.set_inter_op_parallelism_threads(1)
+tf.config.threading.set_intra_op_parallelism_threads(1)
 
 app = Flask(__name__)
 
@@ -21,11 +24,9 @@ scaler = joblib.load(scaler_path)
 @app.route("/", methods=["GET", "POST"])
 def index():
     prediction = ""
-    
     if request.method == "POST":
         try:
-            # Get the 5 inputs (Requirement Part B.2 & B.3)
-            # Names must match the 'name' attribute in index.html
+            # These names MUST match the 'name=' attribute in your index.html
             features = [
                 float(request.form["radius_mean"]),
                 float(request.form["texture_mean"]),
@@ -34,19 +35,16 @@ def index():
                 float(request.form["smoothness_mean"])
             ]
 
-            # Convert to numpy and scale
             input_data = np.array([features])
             input_scaled = scaler.transform(input_data)
 
-            # Predict (Requirement Part B.4)
+            # Use model.predict for Keras 3.x
             prob = model.predict(input_scaled)[0][0]
             
-            if prob >= 0.5:
-                prediction = "Malignant"
-            else:
-                prediction = "Benign"
+            prediction = "Malignant" if prob >= 0.5 else "Benign"
 
         except Exception as e:
+            # This will show you exactly what is wrong on the webpage
             prediction = f"Error: {str(e)}"
 
     return render_template("index.html", prediction=prediction)

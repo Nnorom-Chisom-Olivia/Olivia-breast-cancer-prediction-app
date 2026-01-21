@@ -17,24 +17,24 @@
         <h2>Breast Cancer Prediction</h2>
         <p>Enter tumor features below (Scale 1-10):</p>
         
-        <form action="/" method="POST">
-            <label>Radius Mean:</label>
-            <input type="number" step="0.01" name="radius_mean" required>
-            
-            <label>Texture Mean:</label>
-            <input type="number" step="0.01" name="texture_mean" required>
-            
-            <label>Perimeter Mean:</label>
-            <input type="number" step="0.01" name="perimeter_mean" required>
-            
-            <label>Area Mean:</label>
-            <input type="number" step="0.01" name="area_mean" required>
-            
-            <label>Smoothness Mean:</label>
-            <input type="number" step="0.01" name="smoothness_mean" required>
-            
-            <button type="submit">Predict Result</button>
-        </form>
+ <form action="/" method="POST">
+    <label>Radius Mean:</label>
+    <input type="number" step="0.01" name="radius_mean" required>
+    
+    <label>Texture Mean:</label>
+    <input type="number" step="0.01" name="texture_mean" required>
+    
+    <label>Perimeter Mean:</label>
+    <input type="number" step="0.01" name="perimeter_mean" required>
+    
+    <label>Area Mean:</label>
+    <input type="number" step="0.01" name="area_mean" required>
+    
+    <label>Smoothness Mean:</label>
+    <input type="number" step="0.01" name="smoothness_mean" required>
+    
+    <button type="submit">Predict Result</button>
+</form>
 
         {% if prediction %}
         <div class="result">

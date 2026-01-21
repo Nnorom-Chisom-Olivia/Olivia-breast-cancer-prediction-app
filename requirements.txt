@@ -2,10 +2,7 @@ Flask
 gunicorn
 numpy
 scikit-learn
-scipy
-tensorflow==2.20.0
+tensorflow-cpu
 joblib
 pandas
-seaborn
-matplotlib
 requests
