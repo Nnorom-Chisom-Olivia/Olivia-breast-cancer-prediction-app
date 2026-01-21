@@ -2,111 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breast Cancer Prediction</title>
+    <title>Breast Cancer Prediction System</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            padding: 40px;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            max-width: 500px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-            color: #555;
-        }
-        input {
-            width: 100%;
-            padding: 8px;
-            margin: 6px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            margin-top: 10px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            background: #e7f3ff;
-            border-radius: 5px;
-            text-align: center;
-            border-left: 4px solid #007bff;
-        }
-        .result strong {
-            color: #333;
-        }
+        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; cursor: pointer; font-size: 16px; }
+        .result { margin-top: 20px; padding: 15px; text-align: center; font-weight: bold; background: #e9ecef; }
+        .disclaimer { font-size: 11px; color: #777; margin-top: 20px; text-align: center; }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h2>Breast Cancer Prediction</h2>
+        <p>Enter tumor features below (Scale 1-10):</p>
+        
+        <form action="/" method="POST">
+            <label>Radius Mean:</label>
+            <input type="number" step="0.01" name="radius_mean" required>
+            
+            <label>Texture Mean:</label>
+            <input type="number" step="0.01" name="texture_mean" required>
+            
+            <label>Perimeter Mean:</label>
+            <input type="number" step="0.01" name="perimeter_mean" required>
+            
+            <label>Area Mean:</label>
+            <input type="number" step="0.01" name="area_mean" required>
+            
+            <label>Smoothness Mean:</label>
+            <input type="number" step="0.01" name="smoothness_mean" required>
+            
+            <button type="submit">Predict Result</button>
+        </form>
 
-<div class="container">
-    <h2>🩺 Breast Cancer Prediction</h2>
+        {% if prediction %}
+        <div class="result">
+            Prediction: {{ prediction }}
+        </div>
+        {% endif %}
 
-    <form action="/" method="POST">
-        <label for="clump_thickness">Clump Thickness (1-10):</label>
-        <input type="number" step="1" min="1" max="10" name="clump_thickness" id="clump_thickness" placeholder="Enter value 1-10" required>
-        
-        <label for="uniform_cell_size">Uniform Cell Size (1-10):</label>
-        <input type="number" step="1" min="1" max="10" name="uniform_cell_size" id="uniform_cell_size" placeholder="Enter value 1-10" required>
-        
-        <label for="uniform_cell_shape">Uniform Cell Shape (1-10):</label>
-        <input type="number" step="1" min="1" max="10" name="uniform_cell_shape" id="uniform_cell_shape" placeholder="Enter value 1-10" required>
-        
-        <label for="marginal_adhesion">Marginal Adhesion (1-10):</label>
-        <input type="number" step="1" min="1" max="10" name="marginal_adhesion" id="marginal_adhesion" placeholder="Enter value 1-10" required>
-        
-        <label for="single_epithelial_size">Single Epithelial Size (1-10):</label>
-        <input type="number" step="1" min="1" max="10" name="single_epithelial_size" id="single_epithelial_size" placeholder="Enter value 1-10" required>
-        
-        <label for="bare_nuclei">Bare Nuclei (1-10):</label>
-        <input type="number" step="1" min="1" max="10" name="bare_nuclei" id="bare_nuclei" placeholder="Enter value 1-10" required>
-        
-        <label for="bland_chromatin">Bland Chromatin (1-10):</label>
-        <input type="number" step="1" min="1" max="10" name="bland_chromatin" id="bland_chromatin" placeholder="Enter value 1-10" required>
-        
-        <label for="normal_nucleoli">Normal Nucleoli (1-10):</label>
-        <input type="number" step="1" min="1" max="10" name="normal_nucleoli" id="normal_nucleoli" placeholder="Enter value 1-10" required>
-        
-        <label for="mitoses">Mitoses (1-10):</label>
-        <input type="number" step="1" min="1" max="10" name="mitoses" id="mitoses" placeholder="Enter value 1-10" required>
-
-        <button type="submit">🔍 Predict</button>
-    </form>
-
-    {% if prediction %}
-    <div class="result">
-        <strong>Prediction:</strong> {{ prediction }}<br>
-        <strong>Probability:</strong> {{ probability }}
+        <div class="disclaimer">
+            Note: This system is strictly for educational purposes and must not be presented as a medical diagnostic tool.
+        </div>
     </div>
-    {% endif %}
-</div>
-
 </body>
 </html>
