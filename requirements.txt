@@ -1,8 +1,7 @@
-Flask
+flask
 gunicorn
-numpy
-scikit-learn
-tensorflow-cpu
-joblib
 pandas
-requests
+scikit-learn
+joblib
+numpy
+tensorflow-cpu
